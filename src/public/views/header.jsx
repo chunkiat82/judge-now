@@ -28,18 +28,11 @@ export default class Header extends React.Component {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="#">#Showcase</a>
+                        <a className="navbar-brand" href="#">#PayPal 2015 Dinner and Dance Judging</a>
                     </div>
                     <div>
                       <ul className="nav navbar-nav">
-                        <li><a target="_blank" href="http://krakenjs.com/">krakenJS</a></li>
-                        <li><a target="_blank" href="https://github.com/paypal/react-engine">react-engine</a></li>
-                        <li><a target="_blank" href="https://github.com/rackt/react-router">react-router</a></li>
-                        <li><a target="_blank" href="https://facebook.github.io/react/">react</a></li>
-                        <li><a target="_blank" href="http://handlebarsjs.com/">handlebars</a></li>
-                        <li><a target="_blank" href="https://webpack.github.io/">webpack</a></li>
-                        <li><a target="_blank" href="https://github.com/rackt/react-router">redux</a></li>
-                        <li><a target="_blank" href="https://babeljs.io/">babel</a></li>
+                        <li><a target="_blank" href="#">Judge 1</a></li>                        
                       </ul>
                     </div>
                 </div>

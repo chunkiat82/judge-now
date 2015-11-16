@@ -7,11 +7,9 @@ var Client = require('react-engine/lib/client');
 // this automatically as it can only operate on
 // static require statements.
 require('./views/app.jsx');
-require('./views/helloWorld.jsx');
 require('./views/header.jsx');
 require('./views/layout.jsx');
-require('./views/scenario.jsx');
-require('./views/wizard.jsx');
+require('./views/form.jsx');
 
 // boot options
 var options = {

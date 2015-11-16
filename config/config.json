@@ -1,43 +1,45 @@
 {
-  "express": {
-    "view engine": "js",
-    "view": "require:react-engine/lib/expressView",
-    "view cache": false,
-    "views": "path:./.dist/public/views"
-  },
-
-  "view engines": {
-      "js": {
-          "module": "react-engine/lib/server",
-          "renderer": {
-            "method": "create",
-              "arguments": [{
-                  "routes": "require:./.dist/routes/react.jsx",
-                  "routesFilePath": "path:./.dist/routes/react.jsx"
-              }]
-          }
-      }
-  },
-
-  "middleware": {
-  
-    "static": {
-      "enabled": true,
-      "priority": 40,
-      "name": "serve-static",
-      "module": {
-        "arguments": [ "path:./.build" ]
-      }
+    "express": {
+        "view engine": "jsx",
+        "view": "require:react-engine/lib/expressView",
+        "view cache": true,
+        "views": "path:./.dist/public/views"
     },
 
-    "appsec": {
-      "enabled": false
+    "view engines": {
+        "jsx": {
+            "module": "react-engine/lib/server",
+            "renderer": {
+                "method": "create",
+                "arguments": [{
+                    "routes": "require:./.dist/routes/react.jsx",
+                    "routesFilePath": "path:./.dist/routes/react.jsx"
+                }]
+            }
+        }
     },
 
-    "router": {
-      "module": {
-        "arguments": [{"directory": "path:./.dist/controllers"}]
-      }
+    "middleware": {
+
+        "static": {
+            "enabled": true,
+            "priority": 40,
+            "name": "serve-static",
+            "module": {
+                "arguments": ["path:./.build"]
+            }
+        },
+
+        "appsec": {
+            "enabled": false
+        },
+
+        "router": {
+            "module": {
+                "arguments": [{
+                    "directory": "path:./.dist/controllers"
+                }]
+            }
+        }
     }
-  }
 }
