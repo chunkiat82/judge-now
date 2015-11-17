@@ -3,13 +3,24 @@ import { Panel, Button, Label} from 'react-bootstrap';
 
 class Criterion extends React.Component {
     constructor() {
-        super();
-        this.state= { points: 0 }
+        super();        
+        this.state= { points: 0 };
         this.setPoints=this.setPoints.bind(this);
     }
 
+    componentWillMount(){
+        const data = this.props.data || [];
+        let set = data.every(rec=>{
+            if (rec.title === this.props.title){
+                this.setState({ points: rec.points });              
+                return false;
+            }            
+            return true;
+        });
+    }
+
     setPoints(points){
-        this.setState({points:points});        
+        this.setState({points:points});
     }
 
     renderButtons(){

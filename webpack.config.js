@@ -12,10 +12,6 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.hbs$/,
-            exclude: [/bower_components/, /node_modules/],
-            loader: "handlebars"
-        }, {
             test: /\.jsx?$/,
             exclude: [/bower_components/, /node_modules/],
             loader: 'babel'
@@ -24,10 +20,5 @@ module.exports = {
             exclude: [/bower_components/, /node_modules/],
             loader: 'json'
         }]
-    },
-    resolve: {     
-        alias: {
-            'handlebars': 'handlebars/runtime.js'
-        }
     }
 };

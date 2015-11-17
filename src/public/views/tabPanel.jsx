@@ -32,15 +32,17 @@ class TabPanel extends React.Component {
      //            </PageSlider>
 
     render() {
-        const judgeName = this.props.params.judgeId;
-        
+        const judgeId = this.props.params.judgeId;
+        const data = this.props.data;
+        const results = data[judgeId] || {};        
+
         const tabsInstance = (
             <div>
                 <Tabs activeKey={this.state.active} onSelect={this.handleSelect}>
-                    <Tab eventKey={1} title="Talent 1"><Form next={this.next} judge={judgeName} team="Beat Singers"/></Tab>
-                    <Tab eventKey={2} title="Talent 2"><Form next={this.next} judge={judgeName} team="Black Angle"/></Tab>
-                    <Tab eventKey={3} title="Talent 3"><Form next={this.next} judge={judgeName} team="Dis Band"/></Tab>
-                    <Tab eventKey={4} title="Talent 4"><Form next={this.next} judge={judgeName} team="K's Angel"/></Tab>
+                    <Tab eventKey={1} title="Talent 1"><Form data={results["Beat Singers"]} next={this.next} judge={judgeId} team="Beat Singers"/></Tab>
+                    <Tab eventKey={2} title="Talent 2"><Form data={results["Black Angle"]} next={this.next} judge={judgeId} team="Black Angle"/></Tab>
+                    <Tab eventKey={3} title="Talent 3"><Form data={results["Dis Band"]} next={this.next} judge={judgeId} team="Dis Band"/></Tab>
+                    <Tab eventKey={4} title="Talent 4"><Form data={results["K's Angel"]} next={this.next} judge={judgeId} team="K's Angel"/></Tab>
                 </Tabs>
                
             </div>

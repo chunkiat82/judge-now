@@ -1,36 +1,14 @@
 /* global __DEVELOPMENT__:true */
 import React from 'react';
 import Header from './header.jsx';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as CounterActions from '../../actions/counter';
-
-import DevTools from '../../containers/DevTools';
 
 class Layout extends React.Component {
 
 	constructor(){
-		super();
-		this.renderDevTools = this.renderDevTools.bind(this);
+		super();		
 	}
 
-	renderDevTools(){
-		if (__DEVELOPMENT__) {
-			return (<DevTools />);
-		}
-		return '';
-	}
-
-	render() {
-		const { step,fieldName, getValues, increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
-		
-		const centered = {
-	      position: 'absolute',
-	      top: '50%',
-	      left: '50%',
-	      transform: 'translate(-50%, -50%)'
-	    };
-	    
+	render() {	    
 		return (
 			<html>
 				<head>
@@ -58,15 +36,5 @@ class Layout extends React.Component {
 	}
 };
 
-function mapStateToProps(state) {
-  return {
-    counter: state.counter
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(CounterActions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default Layout;
 
