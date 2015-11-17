@@ -55,10 +55,10 @@ class Criterion extends React.Component {
             textAlign: 'center'
         }
         return (
-            <div style={style}>
+            <div style={style}>                
+                <h1>{this.renderPoints()} Points</h1>
                 <h1>{this.props.title}</h1>
-                <h1>{this.renderPoints()} Points</h1><br/>
-                {this.renderButtons()}
+                <br/>{this.renderButtons()}
                 <hr/>
             </div>
         );  
