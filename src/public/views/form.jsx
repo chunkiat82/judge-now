@@ -19,7 +19,7 @@ class Form extends React.Component {
             const points = criterion.state.points;
             const title = criterion.props.title;
             zeroFound = zeroFound || points === 0;
-            entries.push({title:title,points:points});
+            entries.push({title:title, points:points});
         });
         
         if (zeroFound){
@@ -27,14 +27,15 @@ class Form extends React.Component {
         }else{            
             this.props.next((err,data)=>{
                 this.setState({entries:entries, completed:zeroFound === false});
-                this.persist('raymondho',entries);
+                this.persist(this.props.judge,this.props.team,entries);
             });
         }
     }
 
-    persist(judge,entries){        
+    persist(judge,team,entries){        
         axios.post('/data', {
             judge: judge,
+            team: team,
             entries: entries
         })
         .then(function (response) {

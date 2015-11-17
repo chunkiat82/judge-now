@@ -11,7 +11,7 @@ class TabPanel extends React.Component {
         this.handleSelect=this.handleSelect.bind(this);        
     }
     next(cb){
-        let active = (this.state.active + 1) % 4;
+        let active = (this.state.active) % 4 + 1;
         console.log(active);
 
         this.setState({showSlider:true});
@@ -26,19 +26,21 @@ class TabPanel extends React.Component {
     handleSelect(active) {
         this.setState({active});
     }
-    
+
      // <PageSlider show={this.state.showSlider}>
      //                <h1>Received</h1>
      //            </PageSlider>
 
     render() {
+        const judgeName = this.props.params.judgeId;
+        
         const tabsInstance = (
             <div>
                 <Tabs activeKey={this.state.active} onSelect={this.handleSelect}>
-                    <Tab eventKey={1} title="Talent 1"><Form next={this.next} judge="1" team="Beat Singers"/></Tab>
-                    <Tab eventKey={2} title="Talent 2"><Form next={this.next} judge="2" team="Black Angle"/></Tab>
-                    <Tab eventKey={3} title="Talent 3"><Form next={this.next} judge="3" team="Dis Band"/></Tab>
-                    <Tab eventKey={4} title="Talent 4"><Form next={this.next} judge="4" team="K's Angel"/></Tab>
+                    <Tab eventKey={1} title="Talent 1"><Form next={this.next} judge={judgeName} team="Beat Singers"/></Tab>
+                    <Tab eventKey={2} title="Talent 2"><Form next={this.next} judge={judgeName} team="Black Angle"/></Tab>
+                    <Tab eventKey={3} title="Talent 3"><Form next={this.next} judge={judgeName} team="Dis Band"/></Tab>
+                    <Tab eventKey={4} title="Talent 4"><Form next={this.next} judge={judgeName} team="K's Angel"/></Tab>
                 </Tabs>
                
             </div>

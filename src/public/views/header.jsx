@@ -31,7 +31,7 @@ export default class Header extends React.Component {
                         <h1><a className="navbar-brand" href="#">#PayPal 2015 Dinner and Dance</a></h1>
                     </div>
                     <div>
-                        <h1><a href="#">Judge: {this.props.judgeName}</a></h1>
+                        <h1><a href="#">JudgeId: {this.props.judgeId}</a></h1>
                     </div>
                 </div>
             </nav>

@@ -6,6 +6,6 @@ import TabPanel from '../public/views/tabPanel.jsx';
 
 var routes = module.exports = (
   	<Route path="/judge/" component={App} >
-        <IndexRoute name='tabPanel' component={TabPanel}/> 
+        <Route path=":judgeId" name='tabPanel' component={TabPanel}/> 
     </Route>
 );

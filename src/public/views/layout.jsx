@@ -37,13 +37,13 @@ class Layout extends React.Component {
 					<meta charSet='utf-8' />
 					<meta name="viewport" content="width=device-width, initial-scale=0.7"/>
 					<title>
-						{this.props.title}						
+						{'PayPal D&D Judging App'}						
 					</title>
 
 					<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 				</head>	
 				<body>
-					<Header judgeName="Raymond Ho"/>
+					<Header judgeId={this.props.params.judgeId}/>
 					<div className="vx_foreground-container">
 						<div className="vx_mainContent">
 							{this.props.children}
