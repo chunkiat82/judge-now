@@ -1,28 +1,35 @@
 import React from 'react';
 import Form from './form.jsx';
 import { Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap';
-import PageSlider from 'react-page-slider';
+// import PageSlider from 'react-page-slider';
 
 class TabPanel extends React.Component {
     constructor() {
         super();
         this.state={active:1, showSlider:false};
         this.next=this.next.bind(this);
-        this.handleSelect=this.handleSelect.bind(this);
+        this.handleSelect=this.handleSelect.bind(this);        
     }
     next(cb){
         let active = (this.state.active + 1) % 4;
         console.log(active);
+
         this.setState({showSlider:true});
         setTimeout((()=> {
             this.setState({showSlider:false,active:active});
             cb();
-        }),1000);
-
+        }),1000);        
     }
+
+    
+
     handleSelect(active) {
         this.setState({active});
     }
+    
+     // <PageSlider show={this.state.showSlider}>
+     //                <h1>Received</h1>
+     //            </PageSlider>
 
     render() {
         const tabsInstance = (
@@ -33,9 +40,7 @@ class TabPanel extends React.Component {
                     <Tab eventKey={3} title="Talent 3"><Form next={this.next} judge="3" team="Dis Band"/></Tab>
                     <Tab eventKey={4} title="Talent 4"><Form next={this.next} judge="4" team="K's Angel"/></Tab>
                 </Tabs>
-                <PageSlider show={this.state.showSlider}>
-                    <h1>Received</h1>
-                </PageSlider>
+               
             </div>
         );            
         return tabsInstance;  

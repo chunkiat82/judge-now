@@ -1,30 +1,56 @@
 import React from 'react';
 import { Panel, Button, Jumbotron} from 'react-bootstrap';
 import Criterion from './criterion.jsx';
-import PageSlider from 'react-page-slider';
+
+var levelup = require('levelup')
+ 
+// 1) Create our database, supply location and options. 
+//    This will create or open the underlying LevelDB store. 
+var db = levelup('./mydb')
+ 
+// 2) put a key & value 
+db.put('name', 'LevelUP', function (err) {
+  if (err) return console.log('Ooops!', err) // some kind of I/O error 
+ 
+  // 3) fetch by key 
+  db.get('name', function (err, value) {
+    if (err) return console.log('Ooops!', err) // likely the key was not found 
+ 
+    // ta da! 
+    console.log('name=' + value)
+  })
+})
+
 class Form extends React.Component {
     constructor() {
         super();        
-        this.state={total:0,criteria:[],completed:false};
+        this.state={entries:[],criteria:[],completed:false};
         this.calculateTotal=this.calculateTotal.bind(this);
+        this.persist=this.persist.bind(this);
     }
 
     calculateTotal(){
-        let total = 0;
+        let entries = [];
         let zeroFound = false;
         this.state.criteria.forEach(function(criterion){
             const points = criterion.state.points;
+            const title = criterion.props.title;
             zeroFound = zeroFound || points === 0;
-            total+=points;
+            entries.push({title:title,points:points});
         });
         
         if (zeroFound){
             alert('you have not judged in one of more categories');
         }else{            
             this.props.next((err,data)=>{
-                this.setState({total:total,completed:zeroFound === false});
+                this.setState({entries:entries, completed:zeroFound === false});
+                persist('raymondho',entries);
             });
         }
+    }
+
+    persist(judge,entries){
+        
     }
 
     renderPanel(){

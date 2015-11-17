@@ -13,24 +13,12 @@ module.exports = {
     },
     module: {
         loaders: [{
-                test: /\.hbs$/,
-                loader: "handlebars"
-            }, {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel'
-            }, {
-                test: /\.json$/,
-                loader: 'json'
-            }
-        ]
-    },
-    resolve: {
-        modulesDirectories: ['node_modules', 'src'],
-        fallback: path.join(__dirname, 'node_modules'),
-        alias: {
-            'handlebars': 'handlebars/runtime.js'
-        }
+            test: /\.jsx?$/,
+            loader: 'babel'
+        }, {
+            test: /\.json$/,
+            loader: 'json'
+        }]
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
