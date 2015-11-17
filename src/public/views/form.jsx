@@ -50,7 +50,7 @@ class Form extends React.Component {
     }
 
     renderPanel(){
-        const jStyle={ textAlign:'center' };
+        const jStyle = { textAlign:'center' };
 
         const data = this.props.data;        
 
