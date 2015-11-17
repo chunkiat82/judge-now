@@ -3,6 +3,9 @@ import prettyjson from 'prettyjson';
 import clientFactory from 'twilio';
 
 import _ from 'lodash';
+import md5 from 'md5';
+
+const fromNumber = "+14423337468";
 
 const client = clientFactory('AC5592f04d75d6ccf4eba102992a0a9f27', process.env.KEY);
 
@@ -13,6 +16,12 @@ const routes = router => {
     });
 
     const defaultRoute = (req, res) => {
+
+        if (md5(req.params.name) !== req.params.key){
+            return res.send(500, "GET LOST");
+        }
+
+
         db.get('results', (err, value) => {
             //if (err) return console.log('Ooops!', err) // likely the key was not found
             let results = value || {};
@@ -115,7 +124,7 @@ const routes = router => {
         client.messages.create({
             body: JSON.stringify(body,null,2),
             to: "+65"+number,
-            from: "+14423337468"
+            from: fromNumber
         }, function(err, message) {            
             console.log(err || message);            
             cb()
@@ -123,6 +132,19 @@ const routes = router => {
     };
 
     const sendRoute = (req, res) => {
+        const name = req.params.name;
+        const number = req.params.number;
+        const hash = md5(name);        
+
+        const body = `Hi ${name}, click on the link to start the judging process - http://dnd.imessage.sg/judge/${name}/${hash}`;
+
+        client.messages.create({
+            body: body,
+            to: "+65"+number,
+            from: fromNumber,
+        }, function(err, message) {                     
+            res.send(200,body);
+        });
 
     };
 
@@ -139,7 +161,7 @@ const routes = router => {
 
     }
 
-    router.get('/judge/*', defaultRoute);
+    router.get('/judge/:name/:key', defaultRoute);
     router.post('/data', postData);
     router.get('/data', getData);
     router.get('/total/:number?', getTotal);
