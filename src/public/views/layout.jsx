@@ -35,13 +35,15 @@ class Layout extends React.Component {
 			<html>
 				<head>
 					<meta charSet='utf-8' />
+					<meta name="viewport" content="width=device-width, initial-scale=0.7"/>
 					<title>
 						{this.props.title}						
 					</title>
+
 					<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 				</head>	
 				<body>
-					<Header/>
+					<Header judgeName="Raymond Ho"/>
 					<div className="vx_foreground-container">
 						<div className="vx_mainContent">
 							{this.props.children}

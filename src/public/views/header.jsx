@@ -28,12 +28,10 @@ export default class Header extends React.Component {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="#">#PayPal 2015 Dinner and Dance Judging</a>
+                        <h1><a className="navbar-brand" href="#">#PayPal 2015 Dinner and Dance</a></h1>
                     </div>
                     <div>
-                      <ul className="nav navbar-nav">
-                        <li><a target="_blank" href="#">Judge 1</a></li>                        
-                      </ul>
+                        <h1><a href="#">Judge: {this.props.judgeName}</a></h1>
                     </div>
                 </div>
             </nav>

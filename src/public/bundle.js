@@ -9,6 +9,7 @@ var Client = require('react-engine/lib/client');
 require('./views/app.jsx');
 require('./views/header.jsx');
 require('./views/layout.jsx');
+require('./views/tabPanel.jsx');
 require('./views/form.jsx');
 
 // boot options
