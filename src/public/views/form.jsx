@@ -2,24 +2,7 @@ import React from 'react';
 import { Panel, Button, Jumbotron} from 'react-bootstrap';
 import Criterion from './criterion.jsx';
 
-var levelup = require('levelup')
- 
-// 1) Create our database, supply location and options. 
-//    This will create or open the underlying LevelDB store. 
-var db = levelup('./mydb')
- 
-// 2) put a key & value 
-db.put('name', 'LevelUP', function (err) {
-  if (err) return console.log('Ooops!', err) // some kind of I/O error 
- 
-  // 3) fetch by key 
-  db.get('name', function (err, value) {
-    if (err) return console.log('Ooops!', err) // likely the key was not found 
- 
-    // ta da! 
-    console.log('name=' + value)
-  })
-})
+import axios from 'axios';
 
 class Form extends React.Component {
     constructor() {
@@ -44,13 +27,22 @@ class Form extends React.Component {
         }else{            
             this.props.next((err,data)=>{
                 this.setState({entries:entries, completed:zeroFound === false});
-                persist('raymondho',entries);
+                this.persist('raymondho',entries);
             });
         }
     }
 
-    persist(judge,entries){
-        
+    persist(judge,entries){        
+        axios.post('/data', {
+            judge: judge,
+            entries: entries
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (response) {
+            console.log(response);
+        });
     }
 
     renderPanel(){

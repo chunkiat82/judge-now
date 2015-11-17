@@ -10,6 +10,7 @@
     "lint": " ./node_modules/eslint/bin/eslint.js src"
   },
   "dependencies": {
+    "axios": "^0.7.0",
     "bootstrap": "^3.3.5",
     "bootstrap-webpack": "0.0.5",
     "engine-munger": "^0.2.0",

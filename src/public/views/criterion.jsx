@@ -22,7 +22,7 @@ class Criterion extends React.Component {
             </div>);
         }else{
             return (<div>
-                <Button bsSize="large" bsStyle="default" onClick={(()=>this.setPoints(0))}>Reset</Button>
+                <Button bsSize="large" bsStyle="default" onClick={(()=>this.setPoints(0))}>Reset Score</Button>
             </div>);
         }
     }
