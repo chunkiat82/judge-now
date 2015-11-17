@@ -43,9 +43,26 @@ const routes = router => {
 
     const getTotal = (req, res) => {
         db.get('results', (err, results) => {
-            if (err) return console.log('Ooops!', err) // likely the key was not found
-                
-            res.send(200, value);         
+            if (err) return res.send(200, {});
+            if (results === undefined) return res.send(200, {}); 
+
+            const total = {};
+            Object.keys(results).forEach(judgeId=>{
+                const judgeResults = results[judgeId];
+                Object.keys(judgeResults).forEach(team=>{
+                    const teamResults = judgeResults[team];
+                    let teamTotal=0;
+                    teamResults.forEach(record=>{
+                        teamTotal +=  record.points;
+                    });
+                });
+                if (total[team] === undefined){
+                    total[team] = teamTotal;
+                }else{
+                    total[team] += teamTotal;
+                }
+            });
+            res.send(200, total);         
         });
     };
 
