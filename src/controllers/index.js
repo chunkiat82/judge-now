@@ -1,12 +1,14 @@
-import levelup from 'levelup';
 import prettyjson from 'prettyjson';
 import clientFactory from 'twilio';
 
 import _ from 'lodash';
 import md5 from 'md5';
 
-const fromNumber = "+14423337468";
+import levelup from 'levelup';
+import transaction from 'level-transactions';
 
+const key = "results";
+const fromNumber = "+14423337468";
 const client = clientFactory('AC5592f04d75d6ccf4eba102992a0a9f27', process.env.KEY);
 
 const routes = router => {
@@ -14,6 +16,8 @@ const routes = router => {
     const db = levelup('./dnd', {
         valueEncoding: 'json'
     });
+
+    var tx = transaction(db);
 
     const defaultRoute = (req, res) => {
 
@@ -23,6 +27,7 @@ const routes = router => {
 
 
         db.get('results', (err, value) => {
+
             //if (err) return console.log('Ooops!', err) // likely the key was not found
             let results = value || {};
             //console.log(results);
@@ -35,22 +40,24 @@ const routes = router => {
 
     const postData = (req, res) => {
         const {judge, team, entries} = req.body;
-        
-        db.get('results', (err, value) => {
-            //if (err) return console.log('Ooops!', err) // likely the key was not found
-            const results = value || {};
 
-            const judgeResults = results[judge];
+        tx.commit(() => {        
+            db.get('results', (err, value) => {
+                //if (err) return console.log('Ooops!', err) // likely the key was not found
+                const results = value || {};
 
-            const teamResults = {};
+                const judgeResults = results[judge];
 
-            teamResults[team] = entries;
+                const teamResults = {};
 
-            results[judge] = Object.assign({}, judgeResults, teamResults);
+                teamResults[team] = entries;
 
-            db.put('results', results, function(err) {
-                if (err) return console.log('Ooops!', err);
-                res.send(200,{success:true});
+                results[judge] = Object.assign({}, judgeResults, teamResults);
+
+                db.put('results', results, function(err) {
+                    if (err) return console.log('Ooops!', err);                    
+                    res.send(200,{success:true});
+                });
             });
         });
     };

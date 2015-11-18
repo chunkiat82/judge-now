@@ -28,6 +28,7 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
     "level": "^1.3.0",
+    "level-transactions": "^1.5.1",
     "leveldown": "^1.4.2",
     "levelup": "^1.3.0",
     "localizr": "^0.1.6",
