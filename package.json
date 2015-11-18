@@ -39,7 +39,7 @@
     "react": "^0.14.2",
     "react-bootstrap": "0.27.3",
     "react-engine": "3.0.0-alpha.1",
-    "react-page-slider": "0.0.9",
+    "react-page-slider": "0.0.10",
     "react-redux": "^4.0.0",
     "react-router": "1.0.0",
     "react-serial-forms": "^1.1.2",
