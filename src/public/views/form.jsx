@@ -66,7 +66,9 @@ class Form extends React.Component {
                     <Criterion data={data} title="Organization/Coordination" ref={(c) => this.state.criteria[5]= c}/>
                     <Criterion data={data} title="Overall Performance" ref={(c) => this.state.criteria[6]= c}/>
                     <h1 style={jStyle}>Once submitted, no changes allowed.</h1>
-                    <Button bsSize="large" bsStyle="primary" onClick={this.calculateTotal} block>Submit</Button>                    
+                    <hr/>
+                    <Button bsSize="large" bsStyle="primary" onClick={this.calculateTotal} block>Submit</Button>
+                    <hr/>
                 </Panel>                
             </div>
         );
