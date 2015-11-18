@@ -174,13 +174,17 @@ const routes = router => {
         });
 
     }
-    router.get('/admin', adminRoute);
+
     router.get('/judge/:name/:key', defaultRoute);
-    router.post('/admin/data', postData);
-    router.get('/admin/data', getData);
-    router.get('/total/:number?', getTotal);
-    router.post('/admin/send', sendLink);
-    router.get('/admin/delete/:name', deleteRoute);
+    router.post('/data', postData);
+
+    router.get('/admin/data', getData); //checked
+
+    router.get('/admin/send', adminRoute);   //checked 
+    router.post('/admin/send', sendLink); //checked
+        
+    router.get('/admin/total/:number?', getTotal); //checked
+    router.get('/admin/delete/:name', deleteRoute); //checked
 
 }
 

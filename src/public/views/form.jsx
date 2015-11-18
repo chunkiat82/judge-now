@@ -36,7 +36,7 @@ class Form extends React.Component {
     }
 
     persist(judge,team,entries){        
-        axios.post('/admin/data', {
+        axios.post('/data', {
             judge: judge,
             team: team,
             entries: entries
