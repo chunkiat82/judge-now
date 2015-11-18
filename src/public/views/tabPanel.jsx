@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './form.jsx';
 import { Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap';
 import PageSlider from 'react-page-slider';
+import ReactDom from 'react-dom';
 
 class TabPanel extends React.Component {
     constructor() {
@@ -24,7 +25,9 @@ class TabPanel extends React.Component {
         }),1100);        
     }
 
-    
+    componentDidUpdate() {
+        ReactDom.findDOMNode(this).scrollIntoView();
+    }
 
     handleSelect(active) {
         this.setState({active});
