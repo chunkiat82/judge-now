@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './form.jsx';
 import { Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap';
-// import PageSlider from 'react-page-slider';
+import PageSlider from 'react-page-slider';
 
 class TabPanel extends React.Component {
     constructor() {
@@ -27,14 +27,14 @@ class TabPanel extends React.Component {
         this.setState({active});
     }
 
-     // <PageSlider show={this.state.showSlider}>
-     //                <h1>Received</h1>
-     //            </PageSlider>
-
     render() {
         const judgeId = this.props.params.judgeId;
         const data = this.props.data;
-        const results = data[judgeId] || {};        
+        const results = data[judgeId] || {}; 
+
+        const centerText = {
+            textAlign:'center'
+        }        
 
         const tabsInstance = (
             <div>
@@ -44,7 +44,13 @@ class TabPanel extends React.Component {
                     <Tab eventKey={3} title="Talent 3"><Form data={results["Dis Band"]} next={this.next} judge={judgeId} team="Dis Band"/></Tab>
                     <Tab eventKey={4} title="Talent 4"><Form data={results["K's Angel"]} next={this.next} judge={judgeId} team="K's Angel"/></Tab>
                 </Tabs>
-               
+                <PageSlider show={this.state.showSlider}>
+                    <div style={centerText}>
+                        <h1>Received</h1>
+                        <br/>
+                        <h1>Next...</h1>
+                    </div>
+                </PageSlider>
             </div>
         );            
         return tabsInstance;  
