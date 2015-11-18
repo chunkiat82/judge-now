@@ -18,7 +18,7 @@ class TabPanel extends React.Component {
         setTimeout((()=> {
             this.setState({showSlider:false,active:active});
             cb();
-        }),1000);        
+        }),2000);        
     }
 
     
