@@ -50,7 +50,7 @@ const routes = router => {
 
             db.put('results', results, function(err) {
                 if (err) return console.log('Ooops!', err);
-
+                res.send(200,{success:true});
             });
         });
     };
