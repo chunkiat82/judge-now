@@ -7,8 +7,8 @@ import Admin from '../public/views/admin.jsx';
 
 var routes = module.exports = (
     <Route>
-        <Route path="/admin" component={App} >         
-            <IndexRoute name='admin' component={Admin}/>         
+        <Route path="/admin/" component={App} >         
+            <Route path="send/" name='admin' component={Admin}/>         
         </Route>
         <Route path="/judge/" component={App} >            
             <Route path=":judgeId/:hashKey" name='tabPanel' component={TabPanel}/>             
