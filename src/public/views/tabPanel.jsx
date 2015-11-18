@@ -3,30 +3,40 @@ import Form from './form.jsx';
 import { Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap';
 import PageSlider from 'react-page-slider';
 import ReactDom from 'react-dom';
+import Header from './header.jsx';
+const teams = ['Beat Singers', 'Black Angle', 'Dis Band', 'K\'s Angel' ];
 
 class TabPanel extends React.Component {
     constructor() {
         super();
-        this.state={active:1, showSlider:false};
+        this.state={active:1, showSlider:false, current: "" };
         this.next=this.next.bind(this);
         this.handleSelect=this.handleSelect.bind(this);        
     }
     next(cb){
-        let active = (this.state.active) % 4 + 1;
-        console.log(active);
+        
+        let current = "Done!";
 
-        this.setState({showSlider:true});
+        let active = (this.state.active) % 4 + 1;
+        if (active >= this.state.active){
+            current = teams[active-1];
+        }
+
+        this.setState({showSlider:true, current:current});
         setTimeout((()=> {
             this.setState({active:active});
             setTimeout((()=> {
                 this.setState({showSlider:false});
                 cb();
-            }),1100);
-        }),1100);        
+            }),2000);
+        }),1100);
+        
     }
 
-    componentDidUpdate() {
-        ReactDom.findDOMNode(this).scrollIntoView();
+    componentDidUpdate(prevProps,prevState) {
+        if (this.state.active!=prevState.active){
+            ReactDom.findDOMNode(this).scrollIntoView();        
+        }
     }
 
     handleSelect(active) {
@@ -40,21 +50,24 @@ class TabPanel extends React.Component {
 
         const centerText = {
             textAlign:'center'
-        }        
+        }
 
         const tabsInstance = (
             <div>
+                <Header judgeId={this.props.params.judgeId}/>
                 <Tabs activeKey={this.state.active} onSelect={this.handleSelect}>
-                    <Tab eventKey={1} title="Talent 1"><Form data={results["Beat Singers"]} next={this.next} judge={judgeId} team="Beat Singers"/></Tab>
-                    <Tab eventKey={2} title="Talent 2"><Form data={results["Black Angle"]} next={this.next} judge={judgeId} team="Black Angle"/></Tab>
-                    <Tab eventKey={3} title="Talent 3"><Form data={results["Dis Band"]} next={this.next} judge={judgeId} team="Dis Band"/></Tab>
-                    <Tab eventKey={4} title="Talent 4"><Form data={results["K's Angel"]} next={this.next} judge={judgeId} team="K's Angel"/></Tab>
+                    <Tab eventKey={1} title="Talent 1"><Form data={results[teams[0]]} next={this.next} judge={judgeId} team={teams[0]}/></Tab>
+                    <Tab eventKey={2} title="Talent 2"><Form data={results[teams[1]]} next={this.next} judge={judgeId} team={teams[1]}/></Tab>
+                    <Tab eventKey={3} title="Talent 3"><Form data={results[teams[2]]} next={this.next} judge={judgeId} team={teams[2]}/></Tab>
+                    <Tab eventKey={4} title="Talent 4"><Form data={results[teams[3]]} next={this.next} judge={judgeId} team={teams[3]}/></Tab>
                 </Tabs>
                 <PageSlider show={this.state.showSlider}>
                     <div style={centerText}>
                         <h1>Received</h1>
                         <br/>
                         <h1>Next...</h1>
+                        <br/>
+                        <h1 style={{color:'red'}}>{this.state.current}</h1>
                     </div>
                 </PageSlider>
             </div>

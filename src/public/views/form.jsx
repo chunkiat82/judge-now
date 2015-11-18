@@ -25,7 +25,7 @@ class Form extends React.Component {
         });
         
         if (zeroFound){
-            alert('you have not judged in one of more categories');
+            alert('You have not judged in one of more categories');
         }else{
             entries.push({title:'total', points:total});
             this.props.next((err,data)=>{
@@ -36,16 +36,17 @@ class Form extends React.Component {
     }
 
     persist(judge,team,entries){        
-        axios.post('/data', {
+        axios.post('/admin/data', {
             judge: judge,
             team: team,
             entries: entries
         })
         .then(function (response) {
-            console.log(response);
+            //console.log(response);
         })
         .catch(function (response) {
-            console.log(response);
+            alert('call raymond');
+            //console.log(response);
         });
     }
 
@@ -65,7 +66,7 @@ class Form extends React.Component {
                     <Criterion data={data} title="Creativity" ref={(c) => this.state.criteria[4]= c}/>
                     <Criterion data={data} title="Organization/Coordination" ref={(c) => this.state.criteria[5]= c}/>
                     <Criterion data={data} title="Overall Performance" ref={(c) => this.state.criteria[6]= c}/>
-                    <h1 style={jStyle}>Once submitted, no changes allowed.</h1>
+                    <h1 style={jStyle}>No changes are allowed after submission!</h1>
                     <hr/>
                     <Button bsSize="large" bsStyle="primary" onClick={this.calculateTotal} block>Submit</Button>
                     <hr/>

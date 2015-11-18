@@ -1,6 +1,5 @@
 /* global __DEVELOPMENT__:true */
 import React from 'react';
-import Header from './header.jsx';
 
 class Layout extends React.Component {
 
@@ -20,8 +19,7 @@ class Layout extends React.Component {
 
 					<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 				</head>	
-				<body>
-					<Header judgeId={this.props.params.judgeId}/>
+				<body>					
 					<div className="vx_foreground-container">
 						<div className="vx_mainContent">
 							{this.props.children}

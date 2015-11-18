@@ -38,6 +38,12 @@ const routes = router => {
 
     };
 
+    const adminRoute = (req, res) => {
+
+        res.render(req.url, {});
+
+    };
+
     const postData = (req, res) => {
         const {judge, team, entries} = req.body;
 
@@ -138,18 +144,19 @@ const routes = router => {
         });
     };
 
-    const sendRoute = (req, res) => {
-        const name = req.params.name;
-        const number = req.params.number;
-        const hash = md5(name);        
+    const sendLink = (req, res) => {
 
+        const {name, number} = req.body;
+        const hash = md5(name);
+        
         const body = `Hi ${name}, click on the link to start the judging process - http://dnd.imessage.sg/judge/${name}/${hash}`;
 
         client.messages.create({
             body: body,
-            to: "+65"+number,
+            to: "+"+number,
             from: fromNumber,
-        }, function(err, message) {                     
+        }, function(err, message) {
+            console.log(err || message);                  
             res.send(200,body);
         });
 
@@ -167,13 +174,13 @@ const routes = router => {
         });
 
     }
-
+    router.get('/admin', adminRoute);
     router.get('/judge/:name/:key', defaultRoute);
-    router.post('/data', postData);
-    router.get('/data', getData);
+    router.post('/admin/data', postData);
+    router.get('/admin/data', getData);
     router.get('/total/:number?', getTotal);
-    router.get('/send/:name/:number', sendRoute);
-    router.get('/delete/:name', deleteRoute);
+    router.post('/admin/send', sendLink);
+    router.get('/admin/delete/:name', deleteRoute);
 
 }
 
