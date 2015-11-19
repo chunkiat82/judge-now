@@ -70,6 +70,8 @@ class Form extends React.Component {
                     <hr/>
                     <Button bsSize="large" bsStyle="primary" onClick={this.calculateTotal} block>Submit</Button>
                     <hr/>
+                    <br/>
+                    <br/>
                 </Panel>                
             </div>
         );
