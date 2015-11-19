@@ -11,7 +11,6 @@ require('./views/header.jsx');
 require('./views/layout.jsx');
 require('./views/tabPanel.jsx');
 require('./views/form.jsx');
-require('./views/admin.jsx');
 
 // boot options
 var options = {

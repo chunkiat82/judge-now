@@ -8,22 +8,20 @@ import axios from 'axios';
 class Admin extends React.Component {
     constructor() {
         super();
-        this.state={url:''};
+        this.state={message:''};
         this.send=this.send.bind(this);
     }
 
     send(){
         var that = this;
         const name = this.refs['name'].getValue();
-        const mobile = this.refs['mobile'].getValue();
 
-        axios.post('/admin/send', {
-            name: name,
-            number: mobile
+        axios.post('/data/delete', {
+            name: name
         })
         .then(function (response) {
             console.log(response);
-            that.setState({url:response.data});            
+            that.setState({message:"deleted"});            
         })
         .catch(function (response) {
             alert('call raymond');
@@ -31,15 +29,14 @@ class Admin extends React.Component {
     }
 
     render() {
-        var url = this.state.url;
+        var message = this.state.message;
         const panelInstance = (
-            <Panel header="Sending the links">               
+            <Panel header="Deleting Data">               
                 <Input ref="name" type="text" placeholder="Name" />
-                <Input ref="mobile" type="text" placeholder="Mobile (without +)" />                        
                                   
-                <Button onClick={this.send} bsStyle="primary">Send</Button>
+                <Button onClick={this.send} bsStyle="primary">Delete</Button>
                 <hr/>
-                {url}                  
+                {message}                  
             </Panel>
         );            
         return panelInstance;  

@@ -8,7 +8,7 @@ import axios from 'axios';
 class Admin extends React.Component {
     constructor() {
         super();
-        this.state={url:''};
+        this.state={message:''};
         this.send=this.send.bind(this);
     }
 
@@ -17,13 +17,13 @@ class Admin extends React.Component {
         const name = this.refs['name'].getValue();
         const mobile = this.refs['mobile'].getValue();
 
-        axios.post('/admin/send', {
+        axios.post('/send/link', {
             name: name,
             number: mobile
         })
         .then(function (response) {
             console.log(response);
-            that.setState({url:response.data});            
+            that.setState({message:response.data});
         })
         .catch(function (response) {
             alert('call raymond');
@@ -31,15 +31,15 @@ class Admin extends React.Component {
     }
 
     render() {
-        var url = this.state.url;
+        var message = this.state.message;
         const panelInstance = (
-            <Panel header="Sending the links">               
+            <Panel header="Sending the link">               
                 <Input ref="name" type="text" placeholder="Name" />
-                <Input ref="mobile" type="text" placeholder="Mobile (without +)" />                        
+                <Input ref="mobile" type="text" placeholder="Mobile (without +) .i.e 6593663636" />
                                   
                 <Button onClick={this.send} bsStyle="primary">Send</Button>
                 <hr/>
-                {url}                  
+                {message}
             </Panel>
         );            
         return panelInstance;  
