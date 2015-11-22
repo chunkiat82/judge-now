@@ -2,6 +2,7 @@
 
 var Routes = require('../routes/react.jsx');
 var Client = require('react-engine/lib/client');
+require('fastclick');
 
 // Include all view files. Browerify doesn't do
 // this automatically as it can only operate on
@@ -24,4 +25,7 @@ var options = {
 
 document.addEventListener('DOMContentLoaded', function onLoad() {
     Client.boot(options);
+    $(function() {
+    	FastClick.attach(document.body);
+	});
 });

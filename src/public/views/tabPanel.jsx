@@ -60,7 +60,7 @@ class TabPanel extends React.Component {
                 <Header judgeId={that.props.params.judgeId}/>
                 <Tabs activeKey={that.state.active} onSelect={that.handleSelect}>
                     {teams.map(function(object, i){
-                        return <Tab eventKey={i+1} title={`Talent ${i+1}`}><Form data={results[teams[i]]} next={that.next} judge={judgeId} team={teams[i]}/></Tab>;
+                        return <Tab key={`key${i+1}`} eventKey={i+1} title={`Talent ${i+1}`}><Form data={results[teams[i]]} next={that.next} judge={judgeId} team={teams[i]}/></Tab>;
                     })}                    
                 </Tabs>
                 <PageSlider show={that.state.showSlider}>
